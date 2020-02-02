@@ -1,26 +1,28 @@
 import React from 'react';
-import logo from './logo.svg';
+import Checkbox from './components/Checkbox';
 import './App.css';
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [question, setQuestion] = React.useState({
+        label: 'Question 1',
+        check: false,
+    });
+
+    const handleQuestionChange = check => {
+        setQuestion({ ...question, check: check });
+    };
+
+    React.useEffect(() => {
+        console.log(question);
+    }, [question]);
+
+    return (
+        <div className="App">
+            <header className="App-header">
+                <Checkbox label={question.label} check={question.check} onCheck={handleQuestionChange} />
+            </header>
+        </div>
+    );
 }
 
 export default App;
